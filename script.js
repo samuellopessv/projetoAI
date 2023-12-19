@@ -1,14 +1,21 @@
 const generateForm = document.querySelector(".generate-form")
 const imageGallery = document.querySelector(".image-gallery")
 
-const OPENAI_API_KEY = "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"
+const OPENAI_API_KEY = "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"
 
 const updateImageCard = (imgDataArray) => {
     imgDataArray.forEach((imgObject, index) =>{
         const imgCard = imageGallery.querySelectorAll(".img-card")[index]
         const imgElement = imgCard.querySelector("img")
 
-        const aiGeneratedImg = `data:image/jpeg;base64,${imgDataArray}`
+        // Defina a fonte da imagem para os dados de imagem gerados por IA
+        const aiGeneratedImg = `data:image/jpeg;base64,${imgObject.b64_json}`
+        imgElement.src = aiGeneratedImg
+
+        //Quando a imagem for carregada, remova a classe de carregamento
+        imgElement.onload = () =>{
+            imgCard.classList.remove("loading")
+        }
     })
 }
 
