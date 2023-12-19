@@ -3,26 +3,39 @@ const imageGallery = document.querySelector(".image-gallery")
 
 const OPENAI_API_KEY = "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"
 
+const updateImageCard = (imgDataArray) => {
+    imgDataArray.forEach((imgObject, index) =>{
+        const imgCard = imageGallery.querySelectorAll(".img-card")[index]
+        const imgElement = imgCard.querySelector("img")
+
+        const aiGeneratedImg = `data:image/jpeg;base64,${imgDataArray}`
+    })
+}
+
 const generateAiImages = async (userPrompt, userImgQuantity) => {
     try{
         // Envie uma solicitação à API OpenAI para gerar imagens com base nas entradas do usuário
         const response = await fetch("https://api.openai.com/v1/images/generations",{
             method: "POST",
             headers : {
-                "Content-Type: application/json",
+                "Content-Type" : "application/json",
                 "Authorization": `Bearer ${OPENAI_API_KEY}`
             },
             body: JSON.stringify({
                 prompt:userPrompt,
-                n:userImgQuantity,
+                n:parseInt(userImgQuantity),
                 size:"512x512",
                 response_format:"b64_json"
             })
         })
+
+        //lançar uma mensagem de erro se a resposta da API não for bem-sucedida
+        if(!response.ok) throw new Error ("Failed to generate images! Please try again.")
             
-        
+        const { data } = await response.json() // Obtenha dados da resposta
+        updateImageCard([...data])
     }catch (error){
-        console.log(error)
+        alert(error.message)
     }
 }
 
