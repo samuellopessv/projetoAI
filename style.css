@@ -6,3 +6,28 @@
     box-sizing: border-box;
     font-family: "Poppins", "sans=serif";
 }
+
+.image-generator {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("mundo.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+.image-generator .content {
+    color: white;
+    padding:  0 15px;
+    max-width: 760px;
+    text-align: center;
+}
+.image-generator h1{
+    font-size:  2.5rem;
+    font-weight: 700;
+}
+
+.image-generator p{
+    font-size: 1.35rem;
+    margin-top: 10px;
+}
