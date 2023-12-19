@@ -197,7 +197,7 @@
 
 @media screen and (max-width: 550px){
     .image-generator {
-        height: 95vh;
+        height: 85vh;
     }
     .image-gallery .img-card {
         width: 100%;
