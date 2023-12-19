@@ -107,10 +107,14 @@
 
 .image-gallery .img-card{
     width: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     position: relative;
     border-radius: 5px;
+    background: #f2f2f2;
 
 }
 
@@ -118,6 +122,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.image-gallery .img-card.loading img{
+    width: 80px;
+    height: 80px;
 }
 
 .image-gallery .img-card .download-btn{
@@ -134,7 +143,7 @@
     
 }
 
-.image-gallery .img-card:hover .download-btn{
+.image-gallery .img-card:not(.loading) .download-btn{
     display: flex;
 
 }
